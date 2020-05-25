@@ -1,0 +1,6 @@
+﻿  main.cpp
+E:\HOCDAI\CS\SEM02\Project\NUM01\StudentManagement\main.cpp(35,21): warning C4018: '<': signed/unsigned mismatch
+E:\HOCDAI\CS\SEM02\Project\NUM01\StudentManagement\main.cpp(53,21): warning C4018: '<': signed/unsigned mismatch
+E:\HOCDAI\CS\SEM02\Project\NUM01\StudentManagement\main.cpp(127,21): warning C4018: '<': signed/unsigned mismatch
+E:\HOCDAI\CS\SEM02\Project\NUM01\StudentManagement\main.cpp(144,22): warning C4018: '<': signed/unsigned mismatch
+  StudentManagement.vcxproj -> E:\HOCDAI\CS\SEM02\Project\NUM01\StudentManagement\Debug\StudentManagement.exe
