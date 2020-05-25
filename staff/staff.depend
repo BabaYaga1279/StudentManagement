@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1590419740 source:c:\users\minh duc\desktop\cspro\staff\staff.cpp
+	"staff.h"
+
+1590419687 c:\users\minh duc\desktop\cspro\staff\staff.h
+	<iostream>
+	<fstream>
+	<string>
+	<string.h>
+
+1590419695 source:c:\users\minh duc\desktop\cspro\staff\main.cpp
+	"staff.h"
+
