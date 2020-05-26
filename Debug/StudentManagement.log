@@ -1,2 +1,8 @@
-﻿  main.cpp
+﻿  FileReader.cpp
+D:\HOCDAI\CS\SEM2\project\StudentManagement\FileReader.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
+D:\HOCDAI\CS\SEM2\project\StudentManagement\FileReader.cpp(32,21): warning C4018: '<': signed/unsigned mismatch
+  Utilities.cpp
+  main.cpp
+  Generating Code...
+  LINK : D:\HOCDAI\CS\SEM2\project\StudentManagement\Debug\StudentManagement.exe not found or not built by the last incremental link; performing full link
   StudentManagement.vcxproj -> D:\HOCDAI\CS\SEM2\project\StudentManagement\Debug\StudentManagement.exe
