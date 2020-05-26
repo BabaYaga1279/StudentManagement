@@ -10,6 +10,7 @@ Use-cases
 3. View profile info 
 4. Change password 
 5. Logout 
+
 ● Academic staff Class 
 6. Import students of a class such as 18CLC6 from a csv file.  
 ▪ The csv file should include columns such as No (1), Student ID (18125001), Lastname (Nguyen Van), Firstname (A), Gender (Male), DoB (2000-04-01).  
@@ -29,9 +30,11 @@ Use-cases
 15. Manually add a new course. 
 16. Edit an existing course. 
 17. Remove a course. 
-18. Remove a specific student from a course. 
+18. Remove a specific student from a course.
+ 
 ▪ For example, by default all students of 18CLC are enrolled in course CTT008, but because of a private reason, student Nguyen Van A is dropped from CTT008. 
 19. Add a specific student to a course. 
+
 ▪ For example, student 1753001 enrolls in CTT008 to improve his previous result. 
  
 20. View list of courses in the current semester. 
@@ -42,6 +45,7 @@ Use-cases
 25. Export a scoreboard to a csv file. Attendance list: 
 26. Search and view attendance list of a course. 
 27. Export a attendance list to a csv file. 
+
 ● Lecturer: 
 28. View list of courses in the current semester. 
 29. View list of students of a course.  
@@ -50,6 +54,7 @@ Use-cases
 32. Import scoreboard of a course (midterm, final, lab, bonus) from a csv file. 
 33. Edit grade of a student 
 34. View a scoreboard 
+
 ● Student: 
 35. Check-in. 
 36. View check-in result. 
