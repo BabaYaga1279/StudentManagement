@@ -16,6 +16,7 @@ int main()
             cout << "Enter the file you want to adjust: " << endl;
             cin.ignore();
             getline (cin,nameoffile);
+            importstudentofaclass(nameoffile,phead);
             while (true)
             {
                 cout << "1.Add a student to a class" << endl << "2.Edit an existing student" << endl << "3.Remove a student" << endl << "4.Change student class" << endl << "5.View class list" << endl << "6.View student list of a class" <<endl << "7.Back to menu" << endl;
@@ -23,6 +24,7 @@ int main()
                 cin >> choice;
                 if (choice == 7)
                 {
+                    deleteall(phead);
                     break;
                 }
             }
