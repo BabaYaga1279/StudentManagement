@@ -22,6 +22,10 @@ int main()
                 cout << "1.Add a student to a class" << endl << "2.Edit an existing student" << endl << "3.Remove a student" << endl << "4.Change student class" << endl << "5.View class list" << endl << "6.View student list of a class" <<endl << "7.Back to menu" << endl;
                 cout << "Your choice: " << endl;
                 cin >> choice;
+                if (choice==1)
+                {
+                    addstudenttoclass(nameoffile,phead);
+                }
                 if (choice == 7)
                 {
                     deleteall(phead);

@@ -53,7 +53,6 @@ void adjust(string A, string B[])
     }
 }
 
-
 void deleteall (student *&phead)
 {
     student *cur;
@@ -65,4 +64,40 @@ void deleteall (student *&phead)
     }
 }
 
-
+void addstudenttoclass (string nameoffile, student *phead)
+{
+    while (phead->pnext != nullptr) phead=phead->pnext;
+    phead->pnext=new student;
+    string B[6],A;
+    int i;
+    ifstream f (nameoffile);
+    while (!f.eof())
+    {
+        getline (f,A);
+    }
+    adjust(A,B);
+    f.close();
+    i=stoi(B[0])+1;
+    B[0]=to_string(i);
+    ofstream g ;
+    g.open (nameoffile, ios_base::app);
+    cout << "Please enter the ID, full name , dob of(dd/mm/yy) of the student: " << endl;
+    phead->pnext->no=B[0];
+    g << endl;
+    g << B[0] << ",";
+    cout << "ID:" << endl;
+    cin.ignore();
+    getline (cin,A);
+    phead->pnext->id=A;
+    g << A << ",";
+    cout << "Full name: " << endl;
+    getline (cin,A);
+    phead->pnext->fullname=A;
+    g << A << ",";
+    cout << "Dob: " << endl;
+    getline(cin,A);
+    phead->pnext->dob=A;
+    g << A << "," << B[4];
+    phead->pnext->Class=B[4];
+    g.close();
+}
