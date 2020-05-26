@@ -26,6 +26,10 @@ int main()
                 {
                     addstudenttoclass(nameoffile,phead);
                 }
+                if (choice==2)
+                {
+                    editstudent(nameoffile,phead);
+                }
                 if (choice == 7)
                 {
                     deleteall(phead);

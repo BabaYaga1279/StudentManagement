@@ -101,3 +101,43 @@ void addstudenttoclass (string nameoffile, student *phead)
     phead->pnext->Class=B[4];
     g.close();
 }
+
+void editstudent(string nameoffile, student *phead)
+{
+    string A;
+    student *cur, *mark=phead;
+    cout << "Please enter the ID of student u want to edit " << endl;
+    cin.ignore();
+    getline (cin,A);
+    while (mark != nullptr)
+    {
+        if (mark->id == A)
+        {
+            cur=mark;
+            break;
+        }
+        mark = mark->pnext;
+    }
+    if (mark==nullptr) cout << "No such id in this class" << endl;
+    else
+    {
+        cout << "Please enter the new information of the student: " << endl;
+        cout << "ID: " << endl;
+        getline (cin,A);
+        cur->id=A;
+        cout << "Full name: " << endl;
+        getline (cin,A);
+        cur->fullname=A;
+        cout << "Dob: " << endl;
+        getline (cin,A);
+        cur->dob=A;
+    }
+    ofstream g (nameoffile);
+    g << "No,Student ID,Fullname,Dob,Class";
+    while (phead!=nullptr)
+    {
+        g << endl << phead->no << "," << phead->id << "," << phead->fullname << "," << phead->dob << "," << phead->Class;
+        phead=phead->pnext;
+    }
+    g.close();
+}
