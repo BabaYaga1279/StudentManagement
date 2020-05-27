@@ -7,6 +7,7 @@ CSVFile::CSVFile() {}
 CSVFile::CSVFile(int x, int y) {
 	this->x = x;
 	this->y = y;
+	if (x == 0) return;
 	data = new string * [x];
 	for (int i = 0; i < x; ++i) data[i] = new string[y];
 }
@@ -109,4 +110,22 @@ void CSVFile::Reverse() {
 void CSVFile::SortByColume(int col, bool accending) {
 	Sort(col, 0, x - 1);
 	if (!accending) Reverse();
+}
+
+bool CSVFile::Find(string S) {
+	for (int i = 0; i < x; ++i)
+		for (int j = 0; j < y; ++j) if (data[i][j] == S) return true;
+	return false;
+}
+
+bool CSVFile::Find(string S, int& x, int& y) {
+	for (int i = 0; i < x; ++i)
+		for (int j = 0; j < y; ++j) if (data[i][j] == S) {
+			x = i;
+			y = j;
+			return true;
+		}
+	x = -1;
+	y = -1;
+	return false;
 }

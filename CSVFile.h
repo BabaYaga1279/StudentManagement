@@ -22,6 +22,8 @@ public:
 	void Sort(int col, int rowl, int rowr);
 	void Reverse();
 	void SortByColume(int col, bool accending);
+	bool Find(string S);
+	bool Find(string S, int& x, int& y);
 };
 
 #endif
