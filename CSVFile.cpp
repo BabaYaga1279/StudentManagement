@@ -119,8 +119,8 @@ bool CSVFile::Find(string S) {
 }
 
 bool CSVFile::Find(string S, int& x, int& y) {
-	for (int i = 0; i < x; ++i)
-		for (int j = 0; j < y; ++j) if (data[i][j] == S) {
+	for (int i = 0; i < this->x; ++i)
+		for (int j = 0; j < this->y; ++j) if (data[i][j] == S || data[i][j] == S + '\n') {
 			x = i;
 			y = j;
 			return true;

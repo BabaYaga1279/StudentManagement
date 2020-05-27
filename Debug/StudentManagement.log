@@ -1,10 +1,2 @@
-﻿  CSVFile.cpp
-D:\HOCDAI\CS\SEM2\project\StudentManagement\CSVFile.cpp(31,20): warning C4018: '<': signed/unsigned mismatch
-D:\HOCDAI\CS\SEM2\project\StudentManagement\CSVFile.cpp(50,20): warning C4018: '<': signed/unsigned mismatch
-  FileReader.cpp
-D:\HOCDAI\CS\SEM2\project\StudentManagement\FileReader.cpp(24,20): warning C4018: '<': signed/unsigned mismatch
-D:\HOCDAI\CS\SEM2\project\StudentManagement\FileReader.cpp(48,21): warning C4018: '<': signed/unsigned mismatch
-  Utilities.cpp
-  main.cpp
-  Generating Code...
+﻿  main.cpp
   StudentManagement.vcxproj -> D:\HOCDAI\CS\SEM2\project\StudentManagement\Debug\StudentManagement.exe

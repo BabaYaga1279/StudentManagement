@@ -147,6 +147,7 @@
     <ClInclude Include="ClassUtilities.h" />
     <ClInclude Include="CSVFile.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

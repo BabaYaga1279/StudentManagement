@@ -17,7 +17,7 @@ void FileReader::ScoutFile(string filename, int& row, int& col) {
 
 	getline(file, firstline);
 	tmp = firstline;
-	while (tmp != "") {
+	while (tmp != "" && !file.eof()) {
 		++row;
 		getline(file, tmp);
 	}
@@ -43,7 +43,7 @@ void FileReader::Read(string filename, CSVFile& data) {
 	}
 
 	getline(file, tmp);
-	while (tmp != "") {
+	while (tmp != "" && !file.eof()) {
 		string word = "";
 		for (int i = 0; i < tmp.length(); ++i) if (tmp[i] != ',') word += tmp[i];
 		else {

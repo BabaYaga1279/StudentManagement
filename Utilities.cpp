@@ -28,6 +28,8 @@ template <typename T>
 void LinkedList<T>::Pop(Node<T>*& PopedPointer) {
 	if (PopedPointer == nullptr) return;
 	--Size;
+	if (PopedPointer == Tail) Tail = Tail->Prev;
+	if (PopedPointer == Head) Head = Head->Next;
 	Node<T>* PrevPointer = PopedPointer->Prev;
 	Node<T>* NextPointer = PopedPointer->Next;
 	if (PrevPointer != nullptr) PrevPointer->Next = NextPointer;
@@ -39,8 +41,9 @@ void LinkedList<T>::Pop(Node<T>*& PopedPointer) {
 template <typename T>
 Node<T>* LinkedList<T>::GetAt(int id) {
 	int count = 0;
-	for (auto i = Head; i != nullptr; i = i->Next, ++count) {
+	for (auto i = Head; i != nullptr; i = i->Next) {
 		if (count == id) return i;
+		++count;
 	}
 	return nullptr;
 }
@@ -57,4 +60,13 @@ void LinkedList<T>::Delete() {
 	delete Head;
 	Head = nullptr;
 	Tail = nullptr;
+}
+
+void TempoaryFunction() {
+	LinkedList<CSVFile> TempObj;
+	CSVFile TempData;
+	TempObj.Push(TempData);
+	auto t = TempObj.GetAt(0);
+	TempObj.Pop(t);
+	TempObj.Delete();
 }
