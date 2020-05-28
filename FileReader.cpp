@@ -7,9 +7,17 @@ void FileReader::ScoutFile(string filename, int& row, int& col) {
 	string firstline = "", tmp;
 	row = 0;
 	col = 0;
+
+	if (!file.good()) {
+		file.close();
+		file.open(filename, ios::out);
+		file.close();
+		return;
+	}
+
 	getline(file, firstline);
 	tmp = firstline;
-	while (tmp != "") {
+	while (tmp != "" && !file.eof()) {
 		++row;
 		getline(file, tmp);
 	}
@@ -26,8 +34,16 @@ void FileReader::Read(string filename, CSVFile& data) {
 	file.open(filename, ios::in);
 	string tmp = "";
 	int x = 0, y = 0;
+
+	if (!file.good()) {
+		file.close();
+		file.open(filename, ios::out);
+		file.close();
+		return;
+	}
+
 	getline(file, tmp);
-	while (tmp != "") {
+	while (tmp != "" && !file.eof()) {
 		string word = "";
 		for (int i = 0; i < tmp.length(); ++i) if (tmp[i] != ',') word += tmp[i];
 		else {

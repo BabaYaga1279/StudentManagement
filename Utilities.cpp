@@ -9,3 +9,64 @@ void PrintFileCSV(CSVFile& file) {
 		cout << '\n';
 	}
 }
+
+template <typename T>
+void LinkedList<T>::Push(T data) {
+	++Size;
+	Node<T>* NewPointer = new Node<T>(data);
+	if (Head == nullptr) {
+		Head = NewPointer;
+		Tail = NewPointer;
+		return;
+	}
+	Tail->Next = NewPointer;
+	NewPointer->Prev = Tail;
+	Tail = NewPointer;
+}
+
+template <typename T>
+void LinkedList<T>::Pop(Node<T>*& PopedPointer) {
+	if (PopedPointer == nullptr) return;
+	--Size;
+	if (PopedPointer == Tail) Tail = Tail->Prev;
+	if (PopedPointer == Head) Head = Head->Next;
+	Node<T>* PrevPointer = PopedPointer->Prev;
+	Node<T>* NextPointer = PopedPointer->Next;
+	if (PrevPointer != nullptr) PrevPointer->Next = NextPointer;
+	if (NextPointer != nullptr) NextPointer->Prev = PrevPointer;
+	delete PopedPointer;
+	PopedPointer = nullptr;
+}
+
+template <typename T>
+Node<T>* LinkedList<T>::GetAt(int id) {
+	int count = 0;
+	for (auto i = Head; i != nullptr; i = i->Next) {
+		if (count == id) return i;
+		++count;
+	}
+	return nullptr;
+}
+
+template <typename T>
+void LinkedList<T>::Delete() {
+	if (Head == nullptr) return;
+	Size = 0;
+	for (auto i = Head->Next; i != nullptr; i = i->Next) {
+		delete Head;
+		Head = nullptr;
+		Head = i;
+	}
+	delete Head;
+	Head = nullptr;
+	Tail = nullptr;
+}
+
+void TempoaryFunction() {
+	LinkedList<CSVFile> TempObj;
+	CSVFile TempData;
+	TempObj.Push(TempData);
+	auto t = TempObj.GetAt(0);
+	TempObj.Pop(t);
+	TempObj.Delete();
+}

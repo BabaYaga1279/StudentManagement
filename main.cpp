@@ -1,26 +1,32 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <string.h>
-#include "CSVFile.h"
+
+#include <iomanip>
+
 #include "FileReader.h"
 #include "Utilities.h"
+#include "ClassUtilities.h"
 
 using namespace std;
 
+
 int main() {
-	FileReader filereader;
+	ClassUtilities ClassManager;
 
-	CSVFile lecturer;
-	filereader.Read("accounts_lecturer.csv", lecturer);
+	ClassManager.PrintClass("19APCS1-Student.csv");
 
-	//lecturer.AddRow("teacher1,teacher1\n");
-	//lecturer.SwapRow(2, 3);
-	lecturer.SortByColume(0, true);
-	lecturer.EditBlock(3, 1, "teacher3");
-	PrintFileCSV(lecturer);
+	ClassManager.ImportNewClass("19APCS2-Student.csv");
 
-	filereader.Write("accounts_lecturer.csv", lecturer);
-	lecturer.Delete();
+	ClassManager.PrintClass("19APCS2-Student.csv");
+
+	ClassManager.PrintClassList();
+
+	FileReader fr;
+
+	CSVFile Tfile;
+
+	fr.Read("19APCS1-Student.csv", Tfile);
+
+	cout<<Tfile.data[0][0];
+
 	return 0;
 }
