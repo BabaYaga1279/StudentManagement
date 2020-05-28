@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1590656223 source:c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\lecturer.cpp
+	"lecturer.h"
+
+1590656275 c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\lecturer.h
+	<iostream>
+	<fstream>
+
