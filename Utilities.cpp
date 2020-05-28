@@ -10,6 +10,26 @@ void PrintFileCSV(CSVFile& file) {
 	}
 }
 
+string IntToString(int x) {
+	string T = "";
+	if (x < 0) {
+		T = "-";
+		x *= -1;
+	}
+	string S = "";
+	while (x) {
+		S = (char)(x % 10 + 48) + S;
+		x /= 10;
+	}
+	return T + S;
+}
+
+int StringToInt(string S) {
+	int x = 0;
+	for (int i = 0; i < S.length(); ++i) x = x * 10 + S[i] - 48;
+	return x;
+}
+
 template <typename T>
 void LinkedList<T>::Push(T data) {
 	++Size;
