@@ -30,6 +30,25 @@ int main()
                 {
                     editstudent(nameoffile,phead);
                 }
+                if (choice==3)
+                {
+                    cout << "please enter the id of the student u want to remove:" << endl;
+                    cin.ignore();
+                    getline(cin,ID);
+                    removestudent(phead,nameoffile,ID);
+                }
+                if (choice == 4)
+                {
+                    changeclass(nameoffile,phead);
+                }
+                if (choice == 5)
+                {
+                    viewclasslist();
+                }
+                if (choice == 6)
+                {
+                    viewstudentofclass(phead);
+                }
                 if (choice == 7)
                 {
                     deleteall(phead);

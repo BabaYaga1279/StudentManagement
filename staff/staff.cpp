@@ -35,35 +35,6 @@ void importstudentofaclass(string nameoffile, student *&phead)
     f.close();
 }
 
-
-void adjust(string A, string B[])
-{
-    int j=0;
-    for (int i=0; i<6; ++i) B[i]="";
-    for (int i=0; i<A.length(); ++i)
-    {
-        if (A[i] == ',')
-        {
-            ++j;
-        }
-        else
-        {
-            B[j]+=A[i];
-        }
-    }
-}
-
-void deleteall (student *&phead)
-{
-    student *cur;
-    while (phead != nullptr)
-    {
-        cur=phead;
-        phead=phead->pnext;
-        delete cur;
-    }
-}
-
 void addstudenttoclass (string nameoffile, student *phead)
 {
     while (phead->pnext != nullptr) phead=phead->pnext;
@@ -101,7 +72,22 @@ void addstudenttoclass (string nameoffile, student *phead)
     phead->pnext->Class=B[4];
     g.close();
 }
-
+void adjust(string A, string B[])
+{
+    int j=0;
+    for (int i=0; i<6; ++i) B[i]="";
+    for (int i=0; i<A.length(); ++i)
+    {
+        if (A[i] == ',')
+        {
+            ++j;
+        }
+        else
+        {
+            B[j]+=A[i];
+        }
+    }
+}
 void editstudent(string nameoffile, student *phead)
 {
     string A;
@@ -141,3 +127,138 @@ void editstudent(string nameoffile, student *phead)
     }
     g.close();
 }
+
+void deleteall (student *&phead)
+{
+    student *cur;
+    while (phead != nullptr)
+    {
+        cur=phead;
+        phead=phead->pnext;
+        delete cur;
+    }
+}
+void removestudent (student *&phead, string nameoffile, string ID)
+{
+    string A;
+    int j=1;
+    student *cur, *mark;
+    if (phead->id == ID)
+    {
+        cur = phead;
+        phead=phead->pnext;
+        delete cur;
+    }
+    else
+    {
+        cur=phead;
+        mark=phead->pnext;
+        while (mark!=nullptr)
+        {
+            if (mark->id==ID)
+            {
+                break;
+            }
+            mark=mark->pnext;
+            cur=cur->pnext;
+        }
+    }
+    if (mark==nullptr) cout << "There is no such student in this class"  << endl;
+    else
+    {
+        cur->pnext=mark->pnext;
+        delete mark;
+        ofstream g (nameoffile);
+        g << "No,Student ID,Fullname,Dob,Class";
+        while (phead!=nullptr)
+        {
+            g << endl << j << "," << phead->id << "," << phead->fullname << "," << phead->dob << "," << phead->Class;
+            phead=phead->pnext;
+            ++j;
+        }
+        g.close();
+    }
+}
+
+void changeclass (string nameoffile, student *&phead)
+{
+    student *cur, *mark;
+    int j=1;
+    string A,class2;
+    cout << "please enter the id of the student" << endl;
+    cin >> A;
+     if (phead->id == A)
+    {
+        mark = phead;
+        phead=phead->pnext;
+    }
+    else
+    {
+        cur=phead;
+        mark=phead->pnext;
+        while (mark!=nullptr)
+        {
+            if (mark->id==A)
+            {
+                break;
+            }
+            mark=mark->pnext;
+            cur=cur->pnext;
+        }
+    }
+    if (mark==nullptr) cout << "There is no such student in this class"  << endl;
+    else
+    {
+        cur->pnext=mark->pnext;
+        ofstream g (nameoffile);
+        g << "No,Student ID,Fullname,Dob,Class";
+        while (phead!=nullptr)
+        {
+            g << endl << j << "," << phead->id << "," << phead->fullname << "," << phead->dob << "," << phead->Class;
+            phead=phead->pnext;
+            ++j;
+        }
+        g.close();
+        cout << "Enter the class u want to move the student in" << endl;
+        cin.ignore();
+        getline(cin,class2);
+        string B[6];
+        int i;
+        ifstream f (class2);
+        while (!f.eof())
+        {
+            getline (f,A);
+        }
+        adjust(A,B);
+        f.close();
+        i=stoi(B[0])+1;
+        B[0]=to_string(i);
+        ofstream t ;
+        t.open (nameoffile, ios_base::app);
+        t << B[0] << "," << mark->id << "," << mark->fullname << "," << mark->dob << "," << B[4];
+        delete mark;
+    }
+}
+
+void viewclasslist ()
+{
+    string n;
+    ifstream f ("class.txt");
+    getline (f,n);
+    cout << "There are " << n << " classes:" << endl;
+    while (!f.eof())
+    {
+        getline (f,n);
+        cout << n << endl;
+    }
+}
+
+void viewstudentofclass (student *phead)
+{
+    while (phead != nullptr)
+    {
+        cout << phead->id << " " << phead->fullname << endl;
+        phead=phead->pnext;
+    }
+}
+
