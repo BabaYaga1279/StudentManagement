@@ -16,6 +16,13 @@ int main()
             getline(cin,nameoffile);
             viewstudenofcourse(nameoffile);
         }
+        if (choice==7)
+        {
+            cout << "Please enter the file containing the score: " << endl;
+            cin.ignore();
+            getline (cin,nameoffile);
+            viewscore(nameoffile);
+        }
         if (choice == 8)
         {
             break;

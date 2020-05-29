@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="19APCS1-CS162-Scoreboard.csv" />
 		<Unit filename="19APCS1-Student.csv" />
 		<Unit filename="lecturer.cpp" />
 		<Unit filename="lecturer.h" />

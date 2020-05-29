@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1590657907 source:c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\lecturer.cpp
+1590725350 source:c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\lecturer.cpp
 	"lecturer.h"
 
-1590657898 c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\lecturer.h
+1590725350 c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\lecturer.h
 	<iostream>
 	<fstream>
 	<string>
 	<string.h>
 
-1590657924 source:c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\main.cpp
+1590725416 source:c:\users\minh duc\desktop\cspro\studentmanagement\lecturer\main.cpp
 	"lecturer.h"
 

@@ -8,6 +8,7 @@ using namespace std;
 
 void adjust(string A, string B[]);
 void viewstudenofcourse (string nameoffile);
+void viewscore (string nameoffile);
 
 
 #endif // LECTURER_H_
