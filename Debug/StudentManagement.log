@@ -1,2 +1,11 @@
-﻿  main.cpp
-  StudentManagement.vcxproj -> D:\HOCDAI\CS\SEM2\project\StudentManagement\Debug\StudentManagement.exe
+﻿  ClassUtilities.cpp
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.cpp(52,76): error C2572: 'ClassUtilities::AddStudent': redefinition of default argument: parameter 1
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.h(30): message : see declaration of 'ClassUtilities::AddStudent'
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.cpp(52,94): error C2572: 'ClassUtilities::AddStudent': redefinition of default argument: parameter 2
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.h(30): message : see declaration of 'ClassUtilities::AddStudent'
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.cpp(52,108): error C2572: 'ClassUtilities::AddStudent': redefinition of default argument: parameter 3
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.h(30): message : see declaration of 'ClassUtilities::AddStudent'
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.cpp(58,151): error C2572: 'ClassUtilities::AddStudent': redefinition of default argument: parameter 1
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.h(31): message : see declaration of 'ClassUtilities::AddStudent'
+  main.cpp
+  Generating Code...

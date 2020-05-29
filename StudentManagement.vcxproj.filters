@@ -27,6 +27,9 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClassUtilities.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSVFile.h">

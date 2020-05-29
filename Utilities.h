@@ -8,6 +8,8 @@
 using namespace std;
 
 void PrintFileCSV(CSVFile& file);
+string IntToString(int x);
+int StringToInt(string S);
 
 template <typename T>
 class Node {
