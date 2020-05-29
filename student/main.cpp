@@ -1,5 +1,5 @@
 #include "student.h"
-
+string nameoffile;
 
 int main()
 {
@@ -10,6 +10,13 @@ int main()
         cout << "1.Check in" << endl << "2.View check in result" << endl << "3.view schedules" << endl << "4.view score in course" << endl << "5.Log out" << endl;
         cout << "Your choice: " << endl;
         cin >> choice;
+        if (choice==3)
+        {
+            cout << "enter the file of schedule: " << endl;
+            cin.ignore();
+            getline (cin,nameoffile);
+            viewschedule(nameoffile);
+        }
         if (choice == 5)
         {
             break;
