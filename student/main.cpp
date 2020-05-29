@@ -1,5 +1,5 @@
 #include "student.h"
-string nameoffile;
+string nameoffile, ID;
 
 int main()
 {
@@ -16,6 +16,15 @@ int main()
             cin.ignore();
             getline (cin,nameoffile);
             viewschedule(nameoffile);
+        }
+        if (choice == 4)
+        {
+            cout << "Please enter the file contain your score: " << endl;
+            cin.ignore();
+            getline(cin,nameoffile);
+            cout << "Please enter your ID: " << endl;
+            getline (cin,ID);
+            viewscore(nameoffile,ID);
         }
         if (choice == 5)
         {

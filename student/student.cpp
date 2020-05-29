@@ -43,4 +43,33 @@ void viewschedule (string nameoffile)
         cout << "Room: " << B[15] << endl;
         cout << endl;
     }
+    f.close();
+}
+
+
+void viewscore (string nameoffile, string ID)
+{
+        string A,B[17];
+        int check=0;
+        ifstream f (nameoffile);
+        getline (f,A);
+        while (!f.eof())
+        {
+            getline (f,A);
+            adjust(A,B);
+            if (B[1]==ID)
+            {
+                check=1;
+                cout << "ID: " << B[1] << endl;
+                cout << "Full name: " << B[2] << endl;
+                cout << "Midterm: "  << B[3] << endl;
+                cout << "Final: " << B[4] << endl;
+                cout << "Bonus: " << B[5] << endl;
+                cout << "Total: " << B[6] << endl;
+                cout << endl;
+                break;
+            }
+        }
+    if (check==0) cout << "Error no such ID in the course" << endl << endl;
+
 }

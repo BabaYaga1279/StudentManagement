@@ -8,6 +8,8 @@ using namespace std;
 
 void adjust(string A, string B[]);
 void viewschedule (string nameoffile);
+void viewscore (string nameoffile, string ID);
+
 
 
 
