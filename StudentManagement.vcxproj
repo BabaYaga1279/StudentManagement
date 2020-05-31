@@ -142,6 +142,7 @@
     <ClCompile Include="CSVFile.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ScheduleUtilities.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="CSVFile.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="ScheduleUtilities.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

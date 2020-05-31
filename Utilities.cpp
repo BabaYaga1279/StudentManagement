@@ -30,6 +30,15 @@ int StringToInt(string S) {
 	return x;
 }
 
+bool ValidCharacter(char C) {
+	if (C >= 'a' && C <= 'z') return true;
+	if (C >= 'A' && C <= 'Z') return true;
+	if (C >= '0' && C <= '9') return true;
+	if (C >= 32 && C <= 95) return true;
+	if (C >= 160 && C <= 190) return true;
+	return false;
+}
+
 template <typename T>
 void LinkedList<T>::Push(T data) {
 	++Size;
@@ -56,6 +65,12 @@ void LinkedList<T>::Pop(Node<T>*& PopedPointer) {
 	if (NextPointer != nullptr) NextPointer->Prev = PrevPointer;
 	delete PopedPointer;
 	PopedPointer = nullptr;
+}
+
+template <typename T>
+void LinkedList<T>::Pop(int id) {
+	auto Tmp = GetAt(id);
+	Pop(Tmp);
 }
 
 template <typename T>
@@ -88,5 +103,7 @@ void TempoaryFunction() {
 	TempObj.Push(TempData);
 	auto t = TempObj.GetAt(0);
 	TempObj.Pop(t);
+	TempObj.Pop(10);
 	TempObj.Delete();
+	TempData.Delete();
 }

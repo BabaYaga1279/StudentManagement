@@ -76,9 +76,9 @@ void CSVFile::RemoveRow(int row) {
 	}
 
 	Delete();
-	data = Tmp;
-	x = Tmpx;
-	y = Tmpy;
+	this->data = Tmp;
+	this->x = Tmpx;
+	this->y = Tmpy;
 }
 
 void CSVFile::SwapRow(int row1, int row2) {

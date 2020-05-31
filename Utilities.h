@@ -10,6 +10,7 @@ using namespace std;
 void PrintFileCSV(CSVFile& file);
 string IntToString(int x);
 int StringToInt(string S);
+bool ValidCharacter(char C);
 
 template <typename T>
 class Node {
@@ -34,6 +35,7 @@ public:
 
 	void Push(T data);
 	void Pop(Node<T>*& PopedPointer);
+	void Pop(int id);
 	Node<T>* GetAt(int id);
 	void Delete();
 };

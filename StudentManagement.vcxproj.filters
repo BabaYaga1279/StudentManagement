@@ -30,6 +30,9 @@
     <ClCompile Include="ClassUtilities.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="ScheduleUtilities.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSVFile.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScheduleUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

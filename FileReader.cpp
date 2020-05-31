@@ -1,4 +1,6 @@
+#include <iostream>
 #include "FileReader.h"
+#include "Utilities.h"
 
 using namespace std;
 
@@ -43,6 +45,10 @@ void FileReader::Read(string filename, CSVFile& data) {
 	}
 
 	getline(file, tmp);
+	for (int i = 0; i < tmp.length(); ++i) if (!ValidCharacter(tmp[i])) {
+		tmp.erase(i, 1); 
+		--i;
+	}
 	while (tmp != "" && !file.eof()) {
 		string word = "";
 		for (int i = 0; i < tmp.length(); ++i) if (tmp[i] != ',') word += tmp[i];
