@@ -21,6 +21,7 @@ public:
 	void PrintScheduleNameList();
 	void PrintSchedule(string filename);
 	void ImportNewSchedule(string filename);
+	void CreateNewSchedule(string filename, bool Override = true);
 	void CreateCourse(string filename, string Course, bool Check = false, int row = -1, int col = -1);
 	void CreateCourse(string filename, string No = "", string CourseID = "", string CourseName = "", string ClassName = "",string LecturerAccount = "", string LN = "", string LD = "", string LG = ""
 					, string StartDay = "", string EndDay = "", string DayOfWeek = "", string StartH = "", string StartM = "", string EndH = "", string EndM = "", string Room = "");

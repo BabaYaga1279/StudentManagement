@@ -48,6 +48,18 @@ void ScheduleUtilities::ImportNewSchedule(string filename) {
 	ScheduleNameList.AddRow(filename);
 }
 
+void ScheduleUtilities::CreateNewSchedule(string filename, bool Override) {
+	int x, y;
+	if (ScheduleNameList.Find(filename, x, y)) {
+		if (!Override) return;
+		DeleteSchedule(x);
+	}
+	ScheduleNameList.AddRow(filename);
+	string S = "No,Course ID,Course name,Class,Lecturer,username,Lecturer name,Lecturer degree,Lecturer gender,Start date,End date,Day of week,Start hour,Start minutes,End hour,End minute,Room\n";
+	CSVFile NewSchedule = CSVFile(S);
+	ScheduleList.Push(NewSchedule);
+}
+
 void ScheduleUtilities::CreateCourse(string filename, string Course, bool Check, int row, int col) {
 	if (!Check && !ScheduleNameList.Find(filename, row, col)) {
 		cout << "Can not add course !" << endl;
@@ -97,6 +109,7 @@ void ScheduleUtilities::DeleteSchedule(int row) {
 	}
 	ScheduleList.GetAt(row)->data.Delete();
 	ScheduleList.Pop(row);
+	ScheduleNameList.RemoveRow(row);
 }
 void ScheduleUtilities::DeleteSchedule(string S) {
 	int row, col;

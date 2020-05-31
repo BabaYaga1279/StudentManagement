@@ -28,6 +28,10 @@ int main() {
 
 	ScheduleManager.PrintSchedule("19APCS1-Schedule.csv");
 
+	ScheduleManager.CreateNewSchedule("19APCS2-Schedule.csv");
+
+	ScheduleManager.PrintSchedule("19APCS2-Schedule.csv");
+	
 	//ScheduleManager.DeleteCourse("19APCS1-Schedule.csv", "IT6969");
 
 	//ScheduleManager.PrintSchedule("19APCS1-Schedule.csv");

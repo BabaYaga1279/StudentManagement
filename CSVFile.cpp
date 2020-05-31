@@ -12,6 +12,42 @@ CSVFile::CSVFile(int x, int y) {
 	for (int i = 0; i < x; ++i) data[i] = new string[y];
 }
 
+CSVFile::CSVFile(string S) {
+	if (S[S.length() - 1] != '\n') S += '\n';
+	int row = 0, col = 0;
+	for (int i = 0, commas = 0; i < S.length(); ++i) 
+		if (S[i] == ',') ++commas;
+		else if (S[i] == '\n') {
+			++row;
+			col = commas > col ? commas : col;
+			commas = 0;
+		}
+	++col;
+	
+
+	this->x = row;
+	this->y = col;
+	if (x == 0) return;
+	data = new string * [row];
+	for (int i = 0; i < x; ++i) data[i] = new string[col];
+
+	string word = "";
+	int u = 0, v = 0;
+	for (int i = 0; i < S.length(); ++i) {
+		if (S[i] == ',') {
+			data[u][v] = word;
+			word = "";
+			++v;
+		} else
+		if (S[i] == '\n') {
+			data[u][v] = word;
+			word = "";
+			++u;
+			v = 0;
+		} else word = word + S[i];
+	}
+}
+
 void CSVFile::Delete() {
 	for (int i = 0; i < x; ++i) delete[] data[i];
 	if (x > 0) delete[] data;

@@ -13,6 +13,7 @@ public:
 	int x = 0, y = 0;
 	CSVFile();
 	CSVFile(int x, int y);
+	CSVFile(string S);
 	void Delete();
 	void AddRow(string line);
 	void EditRow(int row, string line);

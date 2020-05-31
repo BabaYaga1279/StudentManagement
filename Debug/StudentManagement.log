@@ -1,5 +1,3 @@
-﻿  ClassUtilities.cpp
-D:\HOCDAI\CS\SEM2\project\StudentManagement\ClassUtilities.cpp(53,48): warning C4018: '<=': signed/unsigned mismatch
-  main.cpp
-  Generating Code...
+﻿  ScheduleUtilities.cpp
+D:\HOCDAI\CS\SEM2\project\StudentManagement\ScheduleUtilities.cpp(36,48): warning C4018: '<=': signed/unsigned mismatch
   StudentManagement.vcxproj -> D:\HOCDAI\CS\SEM2\project\StudentManagement\Debug\StudentManagement.exe
