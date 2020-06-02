@@ -1,44 +1,102 @@
 #include <iostream>
-
 #include <iomanip>
+#include <windows.h>
 
 #include "FileReader.h"
 #include "Utilities.h"
 #include "CSVFile.h"
-#include "ClassUtilities.h"
-#include "ScheduleUtilities.h"
+#include "CSVFileGroup.h"
 
-using namespace std;
+class FileManager {
+private:
+	FileReader filereader;
+
+public:
+	string FileDir = "";
+	CSVFile file_list;
+	CSVFileGroup csv_list;
+
+	FileManager(string FileDir = "") {
+		this->FileDir = FileDir;
+		filereader = FileReader(FileDir);
+
+		filereader.Read("FolderList.csv", file_list);
+		csv_list  = CSVFileGroup("CSVFileList.csv",filereader);
+
+	}
+
+	void ImportNewCSVFile(string filename, string FileDir = "") {
+		filereader.ChangeDir(FileDir);
+
+		csv_list.ImportNewFile(filename, filereader);
+	}
+	
+	void CreateNewFolder(string filename, bool Override = false) {
+		string dir = filename;
+
+		if (dir.find(FileDir) == string::npos) dir = FileDir + dir;
+
+		if (CreateDirectory(dir.c_str(), NULL)) {
+			cerr << dir << " created !" << endl;
+		}
+		else if (ERROR_ALREADY_EXISTS == GetLastError()) {
+			cerr << dir << " aready exits !" << endl;
+			if (Override) RemoveFolder(filename);
+			if (file_list.Find(filename)) return;
+		}
+		else {
+			cerr << "Can't create folder" << endl;
+			return;
+		}
+
+		file_list.AddRow(filename);
+	}
+
+	void RemoveFolder(string filename) {
+		string dir = filename;
+
+		if (dir.find(FileDir) == string::npos) dir = FileDir + dir;
+
+		if (RemoveDirectory(dir.c_str())) {
+			cerr << dir << " deleted !" << endl;
+		}
+		else {
+			cerr << "Can't delete folder" << endl;
+			return;
+		}
+
+		int x, y;
+		if (file_list.Find(filename,x,y)) file_list.RemoveRow(x);
+	}
+
+	void Delete() {
+		filereader.ChangeDir(FileDir);
+
+		filereader.Write("FolderList.csv", file_list);
+		file_list.Delete();
+
+		csv_list.Delete(filereader);
+	}
+
+};
 
 int main() {
+	FileManager file("TEST0/");
+
+	PrintCSVFile(file.file_list);
+
+	file.csv_list.PrintFileNameList();
 	
-	ClassUtilities ClassManager;
+	file.csv_list.PrintOneFile("TEST1.csv");  
 
-	ClassManager.PrintClass("19APCS1-Student.csv");
+	file.CreateNewFolder("TEST1");
 
-	ClassManager.ImportNewClass("19APCS2-Student.csv");
+	file.CreateNewFolder("TEST2");
 
-	ClassManager.PrintClass("19APCS2-Student.csv");
+	file.Delete();  
 
-	ClassManager.PrintClassList();
-	
-	ScheduleUtilities ScheduleManager;
+	FileManager file2("TEST0/TEST1/");
 
-	ScheduleManager.PrintScheduleNameList();
-
-	ScheduleManager.PrintSchedule("19APCS1-Schedule.csv");
-
-	ScheduleManager.CreateNewSchedule("19APCS2-Schedule.csv");
-
-	ScheduleManager.PrintSchedule("19APCS2-Schedule.csv");
-	
-	//ScheduleManager.DeleteCourse("19APCS1-Schedule.csv", "IT6969");
-
-	//ScheduleManager.PrintSchedule("19APCS1-Schedule.csv");
-
-	//ScheduleManager.CreateCourse("19APCS1-Schedule.csv", "2", "IT6969", "Trailer to Programming", "", "JohnySin", "Johny Sin", "Premium", "Male", "31/12/2019", "31/12/2020", "SUN", "6", "59", "18", "59", "I99");
-
-	//ScheduleManager.PrintSchedule("19APCS1-Schedule.csv");
-
+	file2.Delete();
 	return 0;
 }

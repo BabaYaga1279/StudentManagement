@@ -1,16 +1,24 @@
 #ifndef _Utilities_H_
 #define _Utilities_H_
 
+#include <iostream>
+#include <windows.h>
+#include <filesystem>
 #include <string>
 #include <string.h>
+#include <iomanip>
+#include <direct.h>
+#define GetCurrentDir _getcwd
 #include "CSVFile.h"
 
 using namespace std;
 
-void PrintFileCSV(CSVFile& file);
+void PrintCSVFile(CSVFile& file);
 string IntToString(int x);
 int StringToInt(string S);
 bool ValidCharacter(char C);
+string CurrentDir();
+string CurrentPath();
 
 template <typename T>
 class Node {

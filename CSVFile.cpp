@@ -71,8 +71,10 @@ void CSVFile::AddRow(string line) {
 		word = "";
 		if (j >= Tmpy) break;
 	}
-	if (j < Tmpy) Tmp[Tmpx - 1][j] = word;
-
+	if (j < Tmpy) {
+		if (word[word.length() - 1] == '\n') word.erase(word.length() - 1, 1);
+		Tmp[Tmpx - 1][j] = word;
+	}
 	Delete();
 	data = Tmp;
 	x = Tmpx;
@@ -164,4 +166,9 @@ bool CSVFile::Find(string S, int& x, int& y) {
 	x = -1;
 	y = -1;
 	return false;
+}
+
+string CSVFile::Get(int x, int y) {
+	if (x >= this->x || y >= this->y) return "";
+	return data[x][y];
 }

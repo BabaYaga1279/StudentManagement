@@ -1,13 +1,24 @@
-#include <iostream>
 #include "Utilities.h"
+
+
 
 using namespace std;
 
-void PrintFileCSV(CSVFile& file) {
+void PrintCSVFile(CSVFile& file) {
+	int* width = new int[file.y];
+	for (int i = 0; i < file.y; ++i) 
+	width[i] = 4;
+
+	for (int i = 0; i < file.x; ++i)
+		for (int j = 0; j < file.y; ++j) 
+			if (width[j] <= file.data[i][j].length()) width[j] = file.data[i][j].length() + 2;
+
 	for (int i = 0; i < file.x; ++i) {
-		for (int j = 0; j < file.y; ++j) cout << file.data[i][j] << ' ';
-		cout << '\n';
+		for (int j = 0; j < file.y; ++j) cout << setw(width[j]) << file.data[i][j] << ' ';
+		cout << endl;
 	}
+
+	delete[] width;
 }
 
 string IntToString(int x) {
@@ -37,6 +48,20 @@ bool ValidCharacter(char C) {
 	if (C >= 32 && C <= 95) return true;
 	if (C >= 160 && C <= 190) return true;
 	return false;
+}
+
+string CurrentDir() {
+	char buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, MAX_PATH);
+	string::size_type pos = string(buffer).find_last_of("\\/");
+	return string(buffer).substr(0, pos);
+}
+
+string CurrentPath() {
+	char buff[FILENAME_MAX]; //create string buffer to hold path
+	GetCurrentDir(buff, FILENAME_MAX);
+	string current_working_dir(buff);
+	return current_working_dir;
 }
 
 template <typename T>

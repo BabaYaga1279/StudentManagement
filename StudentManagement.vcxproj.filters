@@ -27,10 +27,7 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClassUtilities.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScheduleUtilities.cpp">
+    <ClCompile Include="CSVFileGroup.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,13 +41,10 @@
     <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClassUtilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ScheduleUtilities.h">
+    <ClInclude Include="CSVFileGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

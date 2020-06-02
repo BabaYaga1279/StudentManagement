@@ -11,11 +11,14 @@ using namespace std;
 class FileReader {
 private:
 	fstream file;
+	string FileDir = "";
 	void ScoutFile(string filename, int& row, int& col);
 
 public:
+	FileReader(string FileDir = "");
 	void Read(string filename, CSVFile& data);
 	void Write(string filename, CSVFile& data);
+	void ChangeDir(string NewDir = "");
 };
 
 #endif

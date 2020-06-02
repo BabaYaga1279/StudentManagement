@@ -25,6 +25,7 @@ public:
 	void SortByColume(int col, bool accending);
 	bool Find(string S);
 	bool Find(string S, int& x, int& y);
+	string Get(int x, int y);
 };
 
 #endif

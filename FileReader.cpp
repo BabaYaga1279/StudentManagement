@@ -4,15 +4,19 @@
 
 using namespace std;
 
+FileReader::FileReader(string FileDir) {
+	this->FileDir = FileDir;
+}
+
 void FileReader::ScoutFile(string filename, int& row, int& col) {
-	file.open(filename, ios::in);
+	file.open(FileDir + filename, ios::in);
 	string firstline = "", tmp;
 	row = 0;
 	col = 0;
 
 	if (!file.good()) {
 		file.close();
-		file.open(filename, ios::out);
+		file.open(FileDir + filename, ios::out);
 		file.close();
 		return;
 	}
@@ -33,13 +37,13 @@ void FileReader::Read(string filename, CSVFile& data) {
 	ScoutFile(filename, row, col);
 	data.Delete();
 	data = CSVFile(row, col);
-	file.open(filename, ios::in);
+	file.open(FileDir + filename, ios::in);
 	string tmp = "";
 	int x = 0, y = 0;
 
 	if (!file.good()) {
 		file.close();
-		file.open(filename, ios::out);
+		file.open(FileDir + filename, ios::out);
 		file.close();
 		return;
 	}
@@ -66,7 +70,9 @@ void FileReader::Read(string filename, CSVFile& data) {
 	file.close();
 }
 void FileReader::Write(string filename, CSVFile& data) {
-	file.open(filename, ios::out);
+	if (filename == "") return;
+	if (filename[filename.length() - 1] == '\n') filename.erase(filename.length() - 1, 1);
+	file.open(FileDir + filename, ios::out);
 	string tmp = "";
 	for (int i = 0; i < data.x; ++i) {
 		for (int j = 0; j < data.y - 1; ++j) tmp += data.data[i][j] + ',';
@@ -75,4 +81,8 @@ void FileReader::Write(string filename, CSVFile& data) {
 		tmp = "";
 	}
 	file.close();
+}
+
+void FileReader::ChangeDir(string NewDir) {
+	FileDir = NewDir;
 }
