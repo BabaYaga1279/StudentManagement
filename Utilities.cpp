@@ -1,7 +1,5 @@
 #include "Utilities.h"
 
-
-
 using namespace std;
 
 void PrintCSVFile(CSVFile& file) {
@@ -65,7 +63,12 @@ string CurrentPath() {
 }
 
 template <typename T>
-void LinkedList<T>::Push(T data) {
+Node<T>::Node(T &data) {
+	this->data = data;
+}
+
+template <typename T>
+void LinkedList<T>::Push(T &data) {
 	++Size;
 	Node<T>* NewPointer = new Node<T>(data);
 	if (Head == nullptr) {
@@ -131,4 +134,6 @@ void TempoaryFunction() {
 	TempObj.Pop(10);
 	TempObj.Delete();
 	TempData.Delete();
+
 }
+
