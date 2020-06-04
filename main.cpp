@@ -8,20 +8,28 @@
 #include "CSVFileGroup.h"
 #include "Folder.h"
 
+
+
+
 int main() {
+	
 	Folder file("DATA/");
 
-	PrintCSVFile(file.file_name_list);
+	PrintCSVFile(file.FileNameList);
 
-	file.csv_list.PrintFileNameList();
-	
-	file.csv_list.PrintOneFile("TEST1.csv");  
+	file.CreateNewFolder("TEST3");
 
-	file.CreateNewFolder("TEST1");
+	file.CreateNewFolder("TEST4");
 
-	file.CreateNewFolder("TEST2");
+	file.RemoveFolder("TEST4");
 
-	file.Delete();  
+	file.SubTail->CreateNewFolder("TESTB");
+
+	file.CreateNewFolder("TEST4");
+
+	file.SubTail->CreateNewFolder("TESTC");
+
+	file.Delete();     
 
 	return 0;
 }

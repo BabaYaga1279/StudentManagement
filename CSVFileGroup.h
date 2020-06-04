@@ -11,8 +11,7 @@
 class CSVFileGroup {
 public:
 	string NameList = "";
-	int width[30];
-	FileReader filereader;
+	int width[30] = { 4,4,4,4,4 };
 	CSVFile FileNameList;
 	LinkedList<CSVFile> FileList;
 

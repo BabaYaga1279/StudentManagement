@@ -9,8 +9,6 @@
 #include <iomanip>
 #include <direct.h>
 #define GetCurrentDir _getcwd
-
-
 #include "CSVFile.h"
 
 using namespace std;
@@ -40,7 +38,6 @@ public:
 	Node<T>* Head = nullptr;
 	Node<T>* Tail = nullptr;
 	int Size = 0;
-
 	void Push(T &data);
 	void Pop(Node<T>*& PopedPointer);
 	void Pop(int id);

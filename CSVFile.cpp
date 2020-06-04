@@ -57,7 +57,9 @@ void CSVFile::Delete() {
 void CSVFile::AddRow(string line) {
 	if (line[line.length() - 1] != '\n') line += '\n';
 	string** Tmp;
-	int Tmpx = x + 1, Tmpy = y;
+	int Tmpx = x + 1, Tmpy = 1;
+	for (int i = 0; i < line.length(); ++i) if (line[i] == ',') ++Tmpy;
+	if (y > Tmpy) Tmpy = y;
 	Tmp = new string * [Tmpx];
 	for (int i = 0; i < x + 1; ++i) Tmp[i] = new string[Tmpy];
 	for (int i = 0; i < x; ++i)

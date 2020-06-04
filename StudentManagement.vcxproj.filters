@@ -44,9 +44,6 @@
     <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CSVFileGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>

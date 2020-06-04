@@ -1,32 +1,32 @@
 #ifndef _Folder_H_
 #define _Folder_H_
 
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
 #include <iomanip>
 #include <windows.h>
-
 #include "FileReader.h"
 #include "CSVFile.h"
 #include "CSVFileGroup.h"
 
-
-
 class Folder {
-private:
-	FileReader filereader;
-
 public:
 	string FileDir = "";
-	CSVFile file_name_list;
+	CSVFile FileNameList;
+	Folder *Next = nullptr, *Prev = nullptr;
+	Folder *SubHead = nullptr, *SubTail = nullptr;
+	int SubSize = 0;
 
-	CSVFileGroup csv_list;
 	Folder();
-	Folder(string FileDir = "");
+	Folder(string FileDir);
 	bool DirExist(string dir);
-	void ImportNewCSVFile(string filename, string FileDir = "");
+	void Push(string dir);
 	void CreateNewFolder(string filename, bool Override = false);
+	Folder* GetSubFolderAt(int x);
+	Folder* GetSubFolder(string dir);
 	void RemoveFolder(string filename);
+	int del(const char* csDeleteFolderPath_i);
 	void Delete();
 };
 

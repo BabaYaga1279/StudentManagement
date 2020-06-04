@@ -1,9 +1,9 @@
 #include "CSVFileGroup.h"
 
-CSVFileGroup::CSVFileGroup() {}
+CSVFileGroup::CSVFileGroup(){}
 
 CSVFileGroup::CSVFileGroup(string NameList, string FileDir) {
-	filereader = FileReader(FileDir);
+	FileReader filereader(FileDir);
 
 	this->NameList = NameList;
 	filereader.Read(NameList, FileNameList);
@@ -55,7 +55,7 @@ void CSVFileGroup::PrintOneFile(string filename) {
 }
 
 void CSVFileGroup::ImportNewFile(string filename, string FileDir) {
-	filereader.ChangeDir(FileDir);
+	FileReader filereader(FileDir);
 
 	if (FileNameList.Find(filename)) DeleteFile(filename);
 	CSVFile NewFile;
@@ -186,7 +186,7 @@ void CSVFileGroup::DeleteRowInFile(string filename, string RowName) {
 }
 
 void CSVFileGroup::Delete(string FileDir) {
-	filereader.ChangeDir(FileDir);
+	FileReader filereader(FileDir);
 
 	filereader.Write(NameList, FileNameList);
 	for (int i = 0; i < FileNameList.x; ++i) filereader.Write(FileNameList.data[i][0], FileList.GetAt(i)->data);
