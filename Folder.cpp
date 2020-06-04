@@ -79,11 +79,13 @@ Folder* Folder::GetSubFolder(string dir) {
 }
 
 void Folder::RemoveFolder(string filename) {
+	bool Check = false;
 	string dir = filename;
 	if (dir.find(FileDir) == string::npos) dir = FileDir + dir;
 	if (dir[dir.length() - 1] != '/') dir = dir + "/";
 	int x, y;
 	if (FileNameList.Find(filename, x, y)) {
+		Check = true;
 		FileNameList.RemoveRow(x);
 		auto t = GetSubFolderAt(x);
 		if (t != nullptr) {
@@ -95,12 +97,13 @@ void Folder::RemoveFolder(string filename) {
 	}
 	if (RemoveDirectory(dir.c_str()) || del(dir.c_str()) == 0) {
 		cerr << dir << " deleted !" << endl;
+		Check = true;
 	}
 	else {
 		
 		cerr << "Can't delete folder" << endl;
-		return;
 	}
+	SubSize -= Check;
 }
 int Folder::del(const char* csDeleteFolderPath_i)
 {

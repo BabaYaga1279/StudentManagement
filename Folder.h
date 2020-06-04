@@ -17,6 +17,7 @@ public:
 	Folder *Next = nullptr, *Prev = nullptr;
 	Folder *SubHead = nullptr, *SubTail = nullptr;
 	int SubSize = 0;
+	//CSVFileGroup SheetList;
 
 	Folder();
 	Folder(string FileDir);
