@@ -15,7 +15,7 @@ int main() {
 	
 	Folder file("DATA/");
 
-	PrintCSVFile(file.FileNameList);
+	PrintCSVFile(file.FolderNameList);
 
 	file.CreateNewFolder("TEST3");
 

@@ -13,11 +13,11 @@
 class Folder {
 public:
 	string FileDir = "";
-	CSVFile FileNameList;
+	CSVFile FolderNameList;
 	Folder *Next = nullptr, *Prev = nullptr;
 	Folder *SubHead = nullptr, *SubTail = nullptr;
 	int SubSize = 0;
-	//CSVFileGroup SheetList;
+	CSVFileGroup CSVFileList;
 
 	Folder();
 	Folder(string FileDir);
@@ -29,6 +29,9 @@ public:
 	void RemoveFolder(string filename);
 	int del(const char* csDeleteFolderPath_i);
 	void Delete();
+
+	void PrintAllSubFolder();
+	void PrintAllCSVFile();
 };
 
 #endif

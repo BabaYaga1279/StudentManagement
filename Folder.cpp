@@ -6,12 +6,11 @@ Folder::Folder(string FileDir) {
 	cout << "Constructor " << FileDir << endl;
 	this->FileDir = FileDir;
 	FileReader filereader(FileDir);
-	filereader.Read("FolderList.csv", FileNameList);
-	for (int i = 0; i < FileNameList.x; ++i) {
-		CreateNewFolder(FileNameList.data[i][0]);
-		//Push(FileDir + FileNameList.data[i][0] + "/");
+	filereader.Read("FolderList.csv", FolderNameList);
+	for (int i = 0; i < FolderNameList.x; ++i) {
+		CreateNewFolder(FolderNameList.data[i][0]);
 	}
-	if (SubHead != nullptr) cout << "SuBhead " << SubHead->FileDir << endl;
+	CSVFileList = CSVFileGroup("CSVFileList.csv", filereader);
 }
 
 bool Folder::DirExist(string dir) {
@@ -56,7 +55,7 @@ void Folder::CreateNewFolder(string filename, bool Override) {
 	}
 
 	int x, y;
-	if (!FileNameList.Find(filename,x ,y)) FileNameList.AddRow(filename);
+	if (!FolderNameList.Find(filename,x ,y)) FolderNameList.AddRow(filename);
 
 	if (GetSubFolderAt(x) == nullptr) Push(dir);
 	
@@ -84,9 +83,9 @@ void Folder::RemoveFolder(string filename) {
 	if (dir.find(FileDir) == string::npos) dir = FileDir + dir;
 	if (dir[dir.length() - 1] != '/') dir = dir + "/";
 	int x, y;
-	if (FileNameList.Find(filename, x, y)) {
+	if (FolderNameList.Find(filename, x, y)) {
 		Check = true;
-		FileNameList.RemoveRow(x);
+		FolderNameList.RemoveRow(x);
 		auto t = GetSubFolderAt(x);
 		if (t != nullptr) {
 			if (t == SubHead) SubHead = SubHead->Next;
@@ -128,14 +127,14 @@ int Folder::del(const char* csDeleteFolderPath_i)
 void Folder::Delete() {
 	cout << "Delete " << FileDir << endl;
 	CreateDirectory(FileDir.c_str(), NULL);
-
 	FileReader filereader(FileDir);
-	for (int i = 0; i < FileNameList.x; ++i) {
-		string S = FileNameList.data[i][0];
-		if (S[S.length() - 1] == '/') FileNameList.data[i][0].erase(S.length() - 1, 1);
+	CSVFileList.Delete(filereader);
+	for (int i = 0; i < FolderNameList.x; ++i) {
+		string S = FolderNameList.data[i][0];
+		if (S[S.length() - 1] == '/') FolderNameList.data[i][0].erase(S.length() - 1, 1);
 	}
-	filereader.Write("FolderList.csv", FileNameList);
-	FileNameList.Delete();
+	filereader.Write("FolderList.csv", FolderNameList);
+	FolderNameList.Delete();
 
 	if (Prev != nullptr) Prev->Next = Next;
 	if (Next != nullptr) Next->Prev = Prev;
