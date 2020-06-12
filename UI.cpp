@@ -394,8 +394,9 @@ void Staff(Folder& file, Folder*& profile) {
                 default:
                     break;
                 }
-                if (choice == 8) break;
+                break;
             }
+            _getch();
             continue;
         }
         if (choice == 2)
@@ -438,8 +439,9 @@ void Staff(Folder& file, Folder*& profile) {
                     break;
                 }
 
-                if (choice == 12) break;
+                break;
             }
+            _getch();
             continue;
         }
         if (choice == 3)
@@ -451,6 +453,7 @@ void Staff(Folder& file, Folder*& profile) {
                 cin >> choice;
                 break;
             }
+            _getch();
             continue;
         }
         if (choice == 4)
@@ -460,6 +463,7 @@ void Staff(Folder& file, Folder*& profile) {
                 cout << "1.Search and view attendance of a course" << endl << "2.Export an attendance list to a csv file" << endl << "3.Back to menu" << endl;
                 break;
             }
+            _getch();
             continue;
         }
         if (choice == 5)
