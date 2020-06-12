@@ -72,7 +72,7 @@ void CSVFileGroup::ImportNewFile(string filename, FileReader& filereader) {
 	FileNameList.AddRow(filename);
 }
 
-void CSVFileGroup::CreateNewFile(string filename, bool Override) {
+void CSVFileGroup::CreateNewFile(string filename, bool Override, string Header) {
 	int x, y;
 	if (FileNameList.Find(filename, x, y)) {
 		if (!Override) {
@@ -84,25 +84,30 @@ void CSVFileGroup::CreateNewFile(string filename, bool Override) {
 	FileNameList.AddRow(filename);
 
 	CSVFile Tmp;
-	string S = "";	// Header of file ("No,Name,ID...")
-	auto xtf = FileList.GetAt(0);
-	if (xtf == nullptr) {
-		cout << "Enter first row of your csv file, each block is seperated by ',' : \n";
-		getline(cin, S);
+	string S = Header;	// Header of file ("No,Name,ID...")
+	if (S == "") {
+		auto xtf = FileList.GetAt(0);
+		if (xtf == nullptr) {
+			cout << "Enter first row of your csv file, each block is seperated by ',' : \n";
+			getline(cin, S);
+		}
+		else {
+			Tmp = xtf->data;
+			for (int j = 0; j < Tmp.y - 1; ++j) S = S + Tmp.data[0][j] + ',';
+			if (Tmp.y > 0) S = S + Tmp.data[0][Tmp.y - 1];
+		}
 	}
-	else {
-		Tmp = xtf->data;
-		for (int j = 0; j < Tmp.y - 1; ++j) S = S + Tmp.data[0][j] + ',';
-		if (Tmp.y > 0) S = S + Tmp.data[0][Tmp.y - 1];
-	}
+	
 	 
 	CSVFile NewFile = CSVFile(S);
 	FileList.Push(NewFile);
 }
 
 void CSVFileGroup::AddRowToFile(string filename, string Row, bool Check, int row, int col) {
+	if (filename.find(".csv") == string::npos) filename += ".csv";
+
 	if (!Check && !FileNameList.Find(filename, row, col)) {
-		cout << "Can not add course !" << endl;
+		cout << "Can not add row !" << endl;
 		return;
 	}
 	FileList.GetAt(row)->data.AddRow(Row);
@@ -201,4 +206,16 @@ void CSVFileGroup::Delete(FileReader &filereader) {
 	for (int i = 0; i < FileNameList.x; ++i) FileList.GetAt(i)->data.Delete();
 	FileNameList.Delete();
 	FileList.Delete();
+}
+
+CSVFile* CSVFileGroup::Find(string filename) {
+	if (filename == "") return nullptr;
+
+	int x, y;
+	if (FileNameList.Find(filename, x, y)) {
+		auto t = FileList.GetAt(x);
+		if (t != nullptr) return &(t->data);
+	}
+
+	return nullptr;
 }

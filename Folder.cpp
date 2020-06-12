@@ -1,9 +1,10 @@
 #include "Folder.h"
+#include <conio.h>
 
 Folder::Folder() {}
 
 Folder::Folder(string FileDir) {
-	cout << "Constructor " << FileDir << endl;
+	//cout << "Constructor " << FileDir << endl;
 	this->FileDir = FileDir;
 	FileReader filereader(FileDir);
 	filereader.Read("FolderList.csv", FolderNameList);
@@ -11,6 +12,16 @@ Folder::Folder(string FileDir) {
 		CreateNewFolder(FolderNameList.data[i][0]);
 	}
 	CSVFileList = CSVFileGroup("CSVFileList.csv", filereader);
+}
+
+string Folder::FolderName() {
+	if (FileDir == "") return "";
+	string foldername = "";
+	for (int i = FileDir.length() - 2; i >= 0; --i) {
+		if (FileDir[i] == '/') break;
+		foldername = FileDir[i] + foldername;
+	}
+	return foldername;
 }
 
 bool Folder::DirExist(string dir) {
@@ -21,7 +32,7 @@ bool Folder::DirExist(string dir) {
 }
 
 void Folder::Push(string dir) {
-	cout << "Push " << dir << endl;
+	//cout << "Push " << dir << endl;
 	Folder* T = new Folder(dir);
 	++SubSize;
 	if (this->SubHead == nullptr) {
@@ -34,15 +45,15 @@ void Folder::Push(string dir) {
 	this->SubTail = T;
 }
 
-void Folder::CreateNewFolder(string filename, bool Override) {
+void Folder::CreateNewFolder(string filename, bool Override, bool Debug) {
 	string dir = filename;
 	if (dir.find(FileDir) == string::npos) dir = FileDir + dir;
 	if (dir[dir.length() - 1] != '/') dir = dir + "/";
 	if (CreateDirectory(dir.c_str(), NULL)) {
-		cerr << dir << " created !" << endl;
+		if (Debug) cerr << dir << " created !" << endl;
 	}
 	else if (ERROR_ALREADY_EXISTS == GetLastError()) {
-		cerr << dir << " aready exits !" << endl;
+		if (Debug) cerr << dir << " aready exits !" << endl;
 		if (Override) {
 			RemoveFolder(filename);
 			CreateNewFolder(filename);
@@ -50,7 +61,7 @@ void Folder::CreateNewFolder(string filename, bool Override) {
 		}
 	}
 	else {
-		cerr << "Can't create folder" << endl;
+		if (Debug) cerr << "Can't create folder" << endl;
 		return;
 	}
 
@@ -59,6 +70,27 @@ void Folder::CreateNewFolder(string filename, bool Override) {
 
 	if (GetSubFolderAt(x) == nullptr) Push(dir);
 	
+}
+
+void Folder::CreateNewCSVFile(string filename, string Header) {
+	if (filename == "") return;
+	if (filename.find(".csv") == string::npos) filename += ".csv";
+
+	CSVFileList.CreateNewFile(filename, true, Header);
+}
+
+void Folder::ImportNewCSVFile(string filename, bool pasted) {
+	if (filename == "") return;
+	if (filename.find(".csv") == string::npos) filename += ".csv";
+
+	if (!pasted) {
+		cout << "Please patse "<<filename<<" into folder containing StudentManagement.exe\n";
+		cout << "Press any key and enter after u did that . \n";
+		_getch();
+	}
+	
+
+	CSVFileList.ImportNewFile(filename, "");
 }
 
 Folder* Folder::GetSubFolderAt(int x) {
@@ -104,6 +136,19 @@ void Folder::RemoveFolder(string filename) {
 	}
 	SubSize -= Check;
 }
+
+Folder* Folder::FindFolder(string filename) {
+	for (auto i = SubHead; i != nullptr; i = i->Next) {
+		if (i->FileDir.find(filename) != string::npos) {
+			return i;
+		}
+		auto t = i->FindFolder(filename);
+		if (t != nullptr) return t;
+	}
+
+	return nullptr;
+}
+
 int Folder::del(const char* csDeleteFolderPath_i)
 {
 	int nFolderPathLen = strlen(csDeleteFolderPath_i);
@@ -125,7 +170,7 @@ int Folder::del(const char* csDeleteFolderPath_i)
 	return 0;
 }
 void Folder::Delete() {
-	cout << "Delete " << FileDir << endl;
+	//cout << "Delete " << FileDir << endl;
 	CreateDirectory(FileDir.c_str(), NULL);
 	FileReader filereader(FileDir);
 	CSVFileList.Delete(filereader);
@@ -150,4 +195,65 @@ void Folder::Delete() {
 	SubHead->Delete();
 	delete SubHead;
 
+}
+
+void Folder::PrintAllSubFolder() {
+	cout << FileDir << endl;
+	for (auto i = SubHead; i != nullptr; i = i->Next) i->PrintAllSubFolder();
+}
+
+void Folder::PrintAllCSVFile() {
+	cout << "Printing all csv files \n";
+	CSVFileList.PrintFileNameList();
+}
+
+void Folder::CreateProfile(string Username, string Password, string ID, string Fullname, string DOB, string Class, string Courses) {
+	if (Username == "") Username = ID;
+	if (Password == "") Password = DOB;
+	
+	string filename = ID + "_" + Fullname + '_' + Username;
+	string Header = "Username,Password,ID,Fullname,Date of birth,Class,Courses\n";
+
+	string Data = Username + ',' + Password + ',' + ID + ',' + Fullname + ',' + DOB + ',' + Class + ',' + Courses + '\n';
+	CreateNewFolder(filename, true);
+
+	auto t = FindFolder(filename);
+	
+	if (t == nullptr) {
+		cout << "can't create profile";
+		return;
+	}
+
+	t->CreateNewCSVFile(filename, Header);
+	t->CSVFileList.AddRowToFile(filename, Data);
+}
+
+void Folder::RemoveProfile(string Username, string ID, string Fullname) {
+	if (ID == "" && Fullname == "" && Username == "") return;
+	auto t = ID != "" ? FindFolder(ID) : (Fullname != "" ? FindFolder(Fullname):FindFolder(Username) );
+	RemoveFolder(t->FolderName());
+}
+
+void Folder::CreateCourse(string ID) {
+	string filename = ID;
+	string Header = "Course ID\n";
+	string Data = ID + '\n';
+
+	CreateNewFolder(filename, true);
+
+	auto t = FindFolder(filename);
+
+	if (t == nullptr) {
+		cout << "can't create profile";
+		return;
+	}
+
+	t->CreateNewCSVFile(filename, Header);
+	t->CSVFileList.AddRowToFile(filename, Data);
+}
+
+void Folder::RemoveCourse(string ID) {
+	if (ID == "") return;
+	auto t = FindFolder(ID);
+	RemoveFolder(t->FolderName());
 }

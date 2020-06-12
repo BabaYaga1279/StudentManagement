@@ -143,6 +143,7 @@
     <ClCompile Include="Folder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CSVFileGroup.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="CSVFileGroup.h" />
     <ClInclude Include="Folder.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

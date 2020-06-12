@@ -21,17 +21,26 @@ public:
 
 	Folder();
 	Folder(string FileDir);
+	string FolderName();
 	bool DirExist(string dir);
 	void Push(string dir);
-	void CreateNewFolder(string filename, bool Override = false);
+	void CreateNewFolder(string filename, bool Override = false, bool Debug = false);
+	void CreateNewCSVFile(string filename, string Header = "");
+	void ImportNewCSVFile(string filename, bool pasted = false);
 	Folder* GetSubFolderAt(int x);
 	Folder* GetSubFolder(string dir);
+	Folder* FindFolder(string filename);
 	void RemoveFolder(string filename);
 	int del(const char* csDeleteFolderPath_i);
 	void Delete();
 
 	void PrintAllSubFolder();
 	void PrintAllCSVFile();
+
+	void CreateProfile(string Username = "", string Password = "", string ID = "", string Fullname = "", string DOB = "", string Class = "", string Courses = "");
+	void RemoveProfile(string Username = "",string ID = "", string Fullname = "");
+	void CreateCourse(string ID = "");
+	void RemoveCourse(string ID = "");
 };
 
 #endif

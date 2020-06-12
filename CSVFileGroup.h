@@ -24,7 +24,7 @@ public:
 	void PrintOneFile(string filename);
 	void ImportNewFile(string filename, string FileDir = "");	// filereader
 	void ImportNewFile(string filename, FileReader& filereader);
-	void CreateNewFile(string filename, bool Override = false);
+	void CreateNewFile(string filename, bool Override = false, string Header = "");
 	void AddRowToFile(string filename, string Row, bool Check = false, int row = -1, int col = -1);
 	void CreateNewRowInFile(string filename);
 	void DeleteFile(int row);
@@ -33,6 +33,8 @@ public:
 	void DeleteRowInFile(string filename, string RowName);
 	void Delete(string FileDir = "");	// filereader
 	void Delete(FileReader& filereader);
+
+	CSVFile* Find(string filename = "");
 };
 
 #endif
