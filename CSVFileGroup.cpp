@@ -72,6 +72,10 @@ void CSVFileGroup::ImportNewFile(string filename, FileReader& filereader) {
 	FileNameList.AddRow(filename);
 }
 
+void CSVFileGroup::ImportNewFile(CSVFile file, string filename) {
+	FileList.Push(file);
+	FileNameList.AddRow(filename);
+}
 void CSVFileGroup::CreateNewFile(string filename, bool Override, string Header) {
 	int x, y;
 	if (FileNameList.Find(filename, x, y)) {

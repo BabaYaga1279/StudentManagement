@@ -27,6 +27,7 @@ public:
 	void CreateNewFolder(string filename, bool Override = false, bool Debug = false);
 	void CreateNewCSVFile(string filename, string Header = "");
 	void ImportNewCSVFile(string filename, bool pasted = false);
+	void ImportNewCSVFile(CSVFile file, string filename);
 	Folder* GetSubFolderAt(int x);
 	Folder* GetSubFolder(string dir);
 	Folder* FindFolder(string filename);

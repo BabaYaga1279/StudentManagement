@@ -93,6 +93,11 @@ void Folder::ImportNewCSVFile(string filename, bool pasted) {
 	CSVFileList.ImportNewFile(filename, "");
 }
 
+void Folder::ImportNewCSVFile(CSVFile file, string filename) {
+	if (filename.find(".csv") == string::npos) filename += ".csv";
+	CSVFileList.ImportNewFile(file, filename);
+}
+
 Folder* Folder::GetSubFolderAt(int x) {
 	int count = 0;
 	for (auto t = SubHead; t != nullptr; t = t->Next) {

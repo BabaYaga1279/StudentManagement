@@ -24,6 +24,7 @@ public:
 	void PrintOneFile(string filename);
 	void ImportNewFile(string filename, string FileDir = "");	// filereader
 	void ImportNewFile(string filename, FileReader& filereader);
+	void ImportNewFile(CSVFile file, string filename);
 	void CreateNewFile(string filename, bool Override = false, string Header = "");
 	void AddRowToFile(string filename, string Row, bool Check = false, int row = -1, int col = -1);
 	void CreateNewRowInFile(string filename);

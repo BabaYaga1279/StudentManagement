@@ -32,25 +32,28 @@ void Staff_AddStudentToCourse(Folder& file);
 void Staff_PrintCourse(Folder& file);
 void Staff_PrintCourseStudent(Folder& file);
 void Staff_PrintCourseAttendance(Folder& file);
+void Staff_ExportCourseAttendance(Folder& file);
 void Staff_PrintLecturer(Folder& file);
 void Staff_CreateLecturer(Folder& file);
 void Staff_EditLecturer(Folder& file);
 void Staff_RemoveLecturer(Folder& file);
 void Staff_PrintScoreBoard(Folder& file);
+void Staff_ExportScoreBoard(Folder& file);
 void Staff(Folder& file, Folder*& profile);
 
-void Student_CheckIn(Folder& file);
+void Student_CheckIn(Folder& file, Folder *& profile);
+void Student_CheckInResult(Folder& file, Folder*& profile);
 void Student_Schedule(Folder& file);
 void Student_Score(Folder& file);
 void Student(Folder& file, Folder*& profile);
 
-void Lecturer_Course(Folder& file);
-void Lecturer_CourseStudent(Folder& file);
-void Lecturer_CourseAttending(Folder& file);
-void Lecturer_EditCourseAttending(Folder& file);
-void Lecturer_ImportScore(Folder& file);
-void Lecturer_EditScore(Folder& file);
-void Lecturer_PrintScore(Folder& file);
+void Lecturer_PrintCourseList(Folder& file, Folder *& profile);
+void Lecturer_PrintCourseStudent(Folder& file, Folder*& profile);
+void Lecturer_PrintCourseAttending(Folder& file, Folder*& profile);
+void Lecturer_EditCourseAttending(Folder& file, Folder*& profile);
+void Lecturer_ImportCourseScore(Folder& file, Folder*& profile);
+void Lecturer_EditStudentScore(Folder& file, Folder*& profile);
+void Lecturer_PrintAllScore(Folder& file, Folder*& profile);
 void Lecturer(Folder& file, Folder*& profile);
 
 #endif
